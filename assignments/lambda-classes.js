@@ -38,11 +38,11 @@ console.log(Person)
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
 class Instructor extends Person {
-    constructor(attribs) {
-        super(attribs);
-        this.specialty = attribs.specialty;
-        this.favLanguage = attribs.favLanguage;
-        this.catchPhrase = attribs.catchPhrase;
+    constructor(attrs) {
+        super(attrs);
+        this.specialty = attrs.specialty;
+        this.favLanguage = attrs.favLanguage;
+        this.catchPhrase = attrs.catchPhrase;
     }
     demo(subject) {
         console.log(`Today we are learning about ${subject}`);
@@ -67,12 +67,14 @@ class Instructor extends Person {
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
 class Student extends Person {
-    constructor(attributes) {
-        super(attributes);
-        this.previousBackground = attributes.previousBackground;
-        this.className = attributes.className;
-        this.favSubjects = attributes.favSubjects;
-    }
+    constructor(attrs) {
+        super(attrs);
+        this.previousBackground = attrs.previousBackground;
+        this.className = attrs.className;
+        this.favSubjects = attrs.favSubjects;
+        this.grade = attrs.grade;
+        }
+
     listsSubjects() {
         console.log((this.favSubjects));
     }
@@ -82,7 +84,15 @@ class Student extends Person {
     sprintChallenge(subject) {
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
     }
- }
+    graduate() {
+        if (this.grade >= 70) {
+            console.log(`${this.name} has graduated with a final grade of ${this.grade}`);
+        }
+        else {
+            console.log(`${this.name} should go back to grading the assignments to increase the score`);
+        }
+    }
+} 
 
 // #### Project Manager
 
@@ -96,10 +106,10 @@ class Student extends Person {
 //   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
 
 class ProjectManager extends Instructor {
-    constructor (atts) {
-        super(atts);
-        this.gradClassName = atts.gradClassName;
-        this.favInstructor = atts.favInstructor;
+    constructor (attrs) {
+        super(attrs);
+        this.gradClassName = attrs.gradClassName;
+        this.favInstructor = attrs.favInstructor;
     }
     standUp(channel) {
         console.log(`${this.name} announces to ${channel}, @channel standy times!​​​​​`);
@@ -136,7 +146,8 @@ const john = new Instructor({
     location: 'Detroit',
     previousBackground: 'biological engineer',
     className: 'FS132',
-    favSubjects: ['Vanilla JS', 'HTML', 'CSS']
+    favSubjects: ['Vanilla JS', 'HTML', 'CSS'],
+    grade: 69
   });
 
   const elen = new Student({
@@ -145,7 +156,8 @@ const john = new Instructor({
     location: 'Boston',
     previousBackground: 'Interior designer',
     className: 'CS135',
-    favSubjects: ['Algorithms & Data structures', 'Python', 'Nodejs'] 
+    favSubjects: ['Algorithms & Data structures', 'Python', 'Nodejs'],
+    grade: 89 
   });
 
   const dave = new ProjectManager({
@@ -176,6 +188,7 @@ const john = new Instructor({
   console.log(john);
   console.log(shura);
   console.log(elen);
+  console.log(`Elen's grade:`, elen.grade);
   console.log(dave);
   john.demo('HTML');
   mary.grade(elen.name, 'JavaScript')
@@ -184,4 +197,5 @@ const john = new Instructor({
   vasya.sprintChallenge('Vanilla JS');
   shura.standUp('CS135');
   dave.debugsCode(vasya.name,'CSS');
- 
+  vasya.graduate();
+  elen.graduate();
