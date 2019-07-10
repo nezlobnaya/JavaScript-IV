@@ -38,9 +38,9 @@ Prototype Refactor
 
   // console.log(`=== CharacterStats ===`);
    class CharacterStats extends GameObject {
-    constructor(attrs) {
-     super(attrs);
-     this.healthPoints = attrs.healthPoints;
+    constructor(attribs) {
+     super(attribs);
+     this.healthPoints = attribs.healthPoints;
     }
     takeDamage() {
       return `${this.name} took damage.`;
@@ -63,11 +63,11 @@ Prototype Refactor
   // console.log(`=== Humanoid (Having an appearance or character resembling that of a human.) ===`);
 
   class Humanoid extends CharacterStats {
-      constructor (attrs) {
-        super(attrs);
-        this.team = attrs.team;
-        this.weapons = attrs.weapons;
-        this.language = attrs.language;
+      constructor (attributes) {
+        super(attributes);
+        this.team = attributes.team;
+        this.weapons = attributes.weapons;
+        this.language = attributes.language;
         
       }
       greet() {
